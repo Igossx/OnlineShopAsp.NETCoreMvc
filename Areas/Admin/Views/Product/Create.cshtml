@@ -53,7 +53,7 @@
                         <label asp-for="Price"></label>
                     </div>
                     <div class="col-8">
-                        <input type="number" asp-for="Price" class="form-control" />
+                        <input type="number" min="0.1" asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
 

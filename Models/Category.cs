@@ -14,6 +14,7 @@ namespace EShop.Models
 
         [Required]
         [DisplayName("Kategoria")]
+        [MaxLength(15)]
         public string Name { get; set; }
     }
 }

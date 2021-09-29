@@ -161,12 +161,6 @@ namespace EShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var items = _db.Categories.ToList();
-            if (items != null)
-            {
-                ViewBag.data = items;
-            }
-
             return View(product);
         }
 
@@ -182,15 +176,10 @@ namespace EShop.Areas.Admin.Controllers
 
             var product = _db.Products.FirstOrDefault(c => c.Id == id);
 
+
             if (product == null)
             {
                 return NotFound();
-            }
-
-            var items = _db.Categories.ToList();
-            if (items != null)
-            {
-                ViewBag.data = items;
             }
 
             _db.Products.Remove(product);

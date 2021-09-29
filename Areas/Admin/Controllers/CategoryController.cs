@@ -42,6 +42,8 @@ namespace EShop.Areas.Admin.Controllers
                 _db.Categories.Add(categories);
                 await _db.SaveChangesAsync();
 
+                TempData["save"] = "Pomyślnie zapisano kategorię";
+
                 return RedirectToAction("Index");
             }
 

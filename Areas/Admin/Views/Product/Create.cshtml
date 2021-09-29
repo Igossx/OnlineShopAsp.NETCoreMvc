@@ -1,6 +1,6 @@
 ﻿@model EShop.Models.Product
 
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
@@ -30,11 +30,14 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="Model"></label>
+                        <label asp-for="ImageUrl"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Model" class="form-control" />
-                        <span asp-validation-for="Model" class="text-danger"></span>
+                        <div class="custom-file">
+                        <input asp-for="ImageUrl" type="file" class="custom-file-input" id="validatedCustomFile" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Wybierz zdjęcie...</label>
+                    </div>
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
 
                 </div>
@@ -55,6 +58,29 @@
                     <div class="col-8">
                         <input type="number" min="0.1" asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="IsAvailable"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="IsAvailable" type="checkbox" />
+                        <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.data, "Id", "CategoryName"))" class="form-control">
+                            <option value="">Wybierz kategorię</option>
+                        </select>
+
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
 
                 </div>

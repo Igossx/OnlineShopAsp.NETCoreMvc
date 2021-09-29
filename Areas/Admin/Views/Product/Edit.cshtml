@@ -1,6 +1,6 @@
 ﻿@model EShop.Models.Product
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <input asp-for="Id" hidden />
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -31,11 +31,11 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="Model"></label>
+                        <label asp-for="ImageUrl"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Model" class="form-control" />
-                        <span asp-validation-for="Model" class="text-danger"></span>
+                        <input asp-for="ImageUrl" class="form-control" type="file" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
 
                 </div>
@@ -56,6 +56,27 @@
                     <div class="col-8">
                         <input type="number" min="0.1" asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="IsAvailable"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="IsAvailable" type="checkbox" />
+                        <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Category"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Category" asp-items="ViewBag.categoryId" class="form-control"></select>
+                        @*<input asp-for="IsAvailable" type="checkbox" />*@
+                        <span asp-validation-for="Category" class="text-danger"></span>
                     </div>
 
                 </div>

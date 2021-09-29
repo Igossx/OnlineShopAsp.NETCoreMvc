@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +11,6 @@ namespace EShop.Models
 {
     public class Product
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -23,9 +24,9 @@ namespace EShop.Models
         public string Description { get; set; }
 
         [Required]
-        [DisplayName("Model")]
-        [MaxLength(25)]
-        public string Model { get; set; }
+        [DisplayName("Grafika")]
+        [NotMapped]
+        public IFormFile ImageUrl { get; set; }
 
         [Required]
         [DisplayName("Marka")]
@@ -36,5 +37,19 @@ namespace EShop.Models
         [DisplayName("Cena")]
         [Range(0.1, Double.MaxValue)]
         public double Price { get; set; }
+
+        [Required]
+        [DisplayName("Dostępny")]
+        [DefaultValue(false)]
+        public bool IsAvailable { get; set; }
+
+        [Display(Name = "Kategoria")]
+        [Required]
+        public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
+
+
     }
 }

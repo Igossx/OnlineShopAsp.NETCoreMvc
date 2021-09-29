@@ -9,12 +9,12 @@ namespace EShop.Models
 {
     public class Category
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
         [DisplayName("Kategoria")]
         [MaxLength(15)]
-        public string Name { get; set; }
+        public string CategoryName { get; set; }
+
     }
 }

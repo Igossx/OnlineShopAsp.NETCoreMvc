@@ -1,8 +1,13 @@
 ﻿using EShop.Data;
 using EShop.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,31 +17,46 @@ namespace EShop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IWebHostEnvironment _whe;
 
-        public ProductController(ApplicationDbContext db)
+        [Obsolete]
+        public ProductController(ApplicationDbContext db, IWebHostEnvironment whe)
         {
             _db = db;
+            _whe = whe;
         }
 
         public IActionResult Index()
         {
-            var data = _db.Products.ToList();
-
-            return View(data);
+            return View(_db.Products.Include(x => x.Category).ToList());
         }
 
         // GET: Details
         public ActionResult Details(int? id)
         {
-            var obj = _db.Products.Find(id);
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            return View(obj);
+            var product = _db.Products.Include(c => c.Category).FirstOrDefault(c => c.Id == id);
 
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
 
         // GET: Create
         public IActionResult Create()
         {
+            var items = _db.Categories.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
             return View();
         }
 
@@ -45,12 +65,27 @@ namespace EShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product products)
         {
+
             if (ModelState.IsValid)
             {
+                if (products.ImageUrl != null)
+                {
+                    string folder = "products/image/";
+                    folder += products.ImageUrl.FileName + Guid.NewGuid().ToString();
+                    string serverFolder = Path.Combine(_whe.WebRootPath, folder);
+                    await products.ImageUrl.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
+
                 _db.Products.Add(products);
                 await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
+            }
+
+            var items = _db.Categories.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
             }
 
             return View(products);
@@ -59,12 +94,15 @@ namespace EShop.Areas.Admin.Controllers
         // GET: Edit
         public IActionResult Edit(int? id)
         {
+
+            ViewData["categotyId"] = new SelectList(_db.Categories.ToList(), "Id", "Category");
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = _db.Products.Find(id);
+            var product = _db.Products.Include(c => c.Category).FirstOrDefault(c => c.Id == id);
 
             if (product == null)
             {
@@ -98,7 +136,7 @@ namespace EShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = _db.Products.Find(id);
+            var product = _db.Products.Include(c => c.Category).Where(c => c.Id == id).FirstOrDefault();
 
             if (product == null)
             {
@@ -118,7 +156,7 @@ namespace EShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = _db.Products.Find(id);
+            var product = _db.Products.FirstOrDefault(c => c.Id == id);
 
             if (product == null)
             {

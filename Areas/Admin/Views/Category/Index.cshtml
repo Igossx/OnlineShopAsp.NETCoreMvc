@@ -29,7 +29,7 @@
                 @foreach (var obj in Model)
                 {
                     <tr>
-                        <td width="80%">@obj.Name</td>
+                        <td width="80%">@obj.CategoryName</td>
                         <td class="text-center">
                             <div class="w-75 btn-group" role="group">
                                 <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">

@@ -34,7 +34,10 @@
                         <label asp-for="ImageUrl"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="ImageUrl" class="form-control" type="file" />
+                        <div class="custom-file">
+                            <input asp-for="ImageUrl" type="file" class="custom-file-input" id="validatedCustomFile" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Wybierz nowe zdjęcie...</label>
+                        </div>
                         <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
 
@@ -74,9 +77,11 @@
                         <label asp-for="Category"></label>
                     </div>
                     <div class="col-8">
-                        <select asp-for="Category" asp-items="ViewBag.categoryId" class="form-control"></select>
-                        @*<input asp-for="IsAvailable" type="checkbox" />*@
-                        <span asp-validation-for="Category" class="text-danger"></span>
+                        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.data, "Id", "CategoryName"))" class="form-control">
+                            <option value="">Wybierz nową kategorię</option>
+                        </select>
+
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
 
                 </div>

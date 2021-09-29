@@ -43,7 +43,7 @@ namespace EShop.Models
         [DefaultValue(false)]
         public bool IsAvailable { get; set; }
 
-        [Display(Name = "Kategoria")]
+        [DisplayName("Kategoria")]
         [Required]
         public int CategoryId { get; set; }
 

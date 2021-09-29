@@ -22,7 +22,7 @@
                         <label asp-for="Description"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Description" disabled class="form-control" />
+                        <textarea asp-for="Description" disabled class="form-control"></textarea>
                     </div>
 
                 </div>
@@ -31,7 +31,10 @@
                         <label asp-for="ImageUrl"></label>
                     </div>
                     <div class="col-8">
-                        <textarea asp-for="ImageUrl" disabled class="form-control"></textarea>
+                        <div class="custom-file">
+                            <input asp-for="ImageUrl" type="file" class="custom-file-input" id="validatedCustomFile" disabled>
+                            <label class="custom-file-label" for="validatedCustomFile">Wybierz nowe zdjęcie...</label>
+                        </div>
                     </div>
 
                 </div>

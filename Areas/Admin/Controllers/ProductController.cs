@@ -95,7 +95,11 @@ namespace EShop.Areas.Admin.Controllers
         public IActionResult Edit(int? id)
         {
 
-            ViewData["categotyId"] = new SelectList(_db.Categories.ToList(), "Id", "Category");
+            var items = _db.Categories.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
 
             if (id == null)
             {
@@ -119,10 +123,24 @@ namespace EShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (products.ImageUrl != null)
+                {
+                    string folder = "products/image/";
+                    folder += products.ImageUrl.FileName + Guid.NewGuid().ToString();
+                    string serverFolder = Path.Combine(_whe.WebRootPath, folder);
+                    await products.ImageUrl.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
+
                 _db.Products.Update(products);
                 await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
+            }
+
+            var items = _db.Categories.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
             }
 
             return View(products);
@@ -143,6 +161,12 @@ namespace EShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            var items = _db.Categories.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
+            }
+
             return View(product);
         }
 
@@ -161,6 +185,12 @@ namespace EShop.Areas.Admin.Controllers
             if (product == null)
             {
                 return NotFound();
+            }
+
+            var items = _db.Categories.ToList();
+            if (items != null)
+            {
+                ViewBag.data = items;
             }
 
             _db.Products.Remove(product);

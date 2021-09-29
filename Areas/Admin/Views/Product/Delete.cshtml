@@ -23,7 +23,7 @@
                         <label asp-for="Description"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Description" disabled class="form-control" />
+                        <textarea asp-for="Description" disabled class="form-control"></textarea>
                     </div>
 
                 </div>
@@ -32,7 +32,11 @@
                         <label asp-for="ImageUrl"></label>
                     </div>
                     <div class="col-8">
-                        <textarea asp-for="ImageUrl" disabled class="form-control"></textarea>
+                        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.data, "Id", "CategoryName"))" disabled class="form-control">
+                            <option value="">Wybierz kategorię</option>
+                        </select>
+
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
 
                 </div>

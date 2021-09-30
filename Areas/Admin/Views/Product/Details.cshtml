@@ -28,18 +28,6 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="ImageUrl"></label>
-                    </div>
-                    <div class="col-8">
-                        <div class="custom-file">
-                            <input asp-for="ImageUrl" type="file" class="custom-file-input" id="validatedCustomFile" disabled>
-                            <label class="custom-file-label" for="validatedCustomFile">Wybierz nowe zdjęcie...</label>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
                         <label asp-for="Brand"></label>
                     </div>
                     <div class="col-8">
@@ -84,7 +72,7 @@
                 </div>
             </div>
             <div class="col-4">
-                @* Keep this empty *@
+                <img src="@Model.CoverImageUrl" width="100%" class="img-thumbnail" style="border-radius: 5px; border: 1px solid #efefef"/>
             </div>
         </div>
     </div>

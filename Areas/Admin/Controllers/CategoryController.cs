@@ -42,7 +42,7 @@ namespace EShop.Areas.Admin.Controllers
                 _db.Categories.Add(categories);
                 await _db.SaveChangesAsync();
 
-                TempData["save"] = "Pomyślnie zapisano kategorię";
+                TempData["create"] = "Pomyślnie utworzono kategorię.";
 
                 return RedirectToAction("Index");
             }
@@ -87,6 +87,8 @@ namespace EShop.Areas.Admin.Controllers
 
             _db.Categories.Remove(category);
             await _db.SaveChangesAsync();
+
+            TempData["delete"] = "Pomyślnie usunięto kategorię.";
 
             return RedirectToAction("Index");
 

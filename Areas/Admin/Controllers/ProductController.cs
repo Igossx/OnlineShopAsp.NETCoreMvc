@@ -71,13 +71,18 @@ namespace EShop.Areas.Admin.Controllers
                 if (products.ImageUrl != null)
                 {
                     string folder = "products/image/";
-                    folder += products.ImageUrl.FileName + Guid.NewGuid().ToString();
+                    folder += Guid.NewGuid().ToString() + "_" + products.ImageUrl.FileName;
+
+                    products.CoverImageUrl = "/" + folder;
+
                     string serverFolder = Path.Combine(_whe.WebRootPath, folder);
                     await products.ImageUrl.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
                 }
 
                 _db.Products.Add(products);
                 await _db.SaveChangesAsync();
+
+                TempData["create"] = "Pomyślnie utworzono produkt.";
 
                 return RedirectToAction("Index");
             }
@@ -126,13 +131,18 @@ namespace EShop.Areas.Admin.Controllers
                 if (products.ImageUrl != null)
                 {
                     string folder = "products/image/";
-                    folder += products.ImageUrl.FileName + Guid.NewGuid().ToString();
+                    folder += Guid.NewGuid().ToString() + "_" + products.ImageUrl.FileName;
+
+                    products.CoverImageUrl = "/" + folder;
+
                     string serverFolder = Path.Combine(_whe.WebRootPath, folder);
                     await products.ImageUrl.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
                 }
 
                 _db.Products.Update(products);
                 await _db.SaveChangesAsync();
+
+                TempData["edit"] = "Pomyślnie zaktualizowano produkt.";
 
                 return RedirectToAction("Index");
             }
@@ -184,6 +194,8 @@ namespace EShop.Areas.Admin.Controllers
 
             _db.Products.Remove(product);
             await _db.SaveChangesAsync();
+
+            TempData["delete"] = "Pomyślnie usunięto produkt.";
 
             return RedirectToAction("Index");
 

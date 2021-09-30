@@ -16,17 +16,23 @@
 
     @if (Model.Count() > 0)
     {
-        <table class="table table-bordered table-striped" style="width:100%">
+        <table class="table table-bordered table-striped" style="width:100%" id="myTable">
             <thead class="thead-dark">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(x=>x.Name)
+                        @Html.DisplayNameFor(x => x.Id)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(x => x.Description)
+                        @Html.DisplayNameFor(x => x.Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(x => x.Price)
+                        @Html.DisplayNameFor(x => x.Brand)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.Category.CategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.Price) (zł)
                     </th>
                     <th></th>
                 </tr>
@@ -35,9 +41,11 @@
                 @foreach (var obj in Model)
                 {
                     <tr>
-                        <td width="40%">@obj.Name</td>
-                        <td width="20%">@obj.Description</td>
-                        <td width="10%">@obj.Price</td>
+                        <td width="5%">@obj.Id</td>
+                        <td width="25%">@obj.Name</td>
+                        <td width="15%">@obj.Brand</td>
+                        <td width="15%">@obj.Category.CategoryName</td>
+                        <td width="10%">@obj.Price zł</td>
                         <td class="text-center">
                             <div class="w-75 btn-group" role="group">
                                 <a asp-controller="Product" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-warning mx-2">
@@ -63,5 +71,36 @@
         <div>
             <h2>Brak produktów</h2>
         </div>
+    }
+
+    @section scripts {
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                var save = '@TempData["create"]'
+                if (save != '') {
+                    alertify.success(save);
+                }
+                var del = '@TempData["delete"]'
+                if (del != '') {
+                    alertify.success(del);
+                }
+                var edit = '@TempData["edit"]'
+                if (edit != '') {
+                    alertify.success(edit);
+                }
+            })
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copyHtml5',
+                        'excelHtml5',
+                        'csvHtml5',
+                        'pdfHtml5'
+                    ]
+                });
+            });
+        </script>
     }
 

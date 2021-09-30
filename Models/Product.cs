@@ -50,6 +50,9 @@ namespace EShop.Models
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
+        [DisplayName("Zdjęcie")]
+        public string CoverImageUrl { get; set; }
+
 
     }
 }

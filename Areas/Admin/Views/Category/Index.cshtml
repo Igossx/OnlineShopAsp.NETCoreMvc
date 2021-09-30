@@ -16,7 +16,7 @@
 
     @if (Model.Count() > 0)
     {
-        <table class="table table-bordered table-striped" style="width:100%">
+        <table class="table table-bordered table-striped" style="width:100%" id="myTable">
             <thead class="thead-dark">
                 <tr>
                     <th>
@@ -54,10 +54,25 @@
     @section scripts {
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
         <script type="text/javascript">
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copyHtml5',
+                        'excelHtml5',
+                        'csvHtml5',
+                        'pdfHtml5'
+                    ]
+                });
+            });
             $(function() {
-                var save = '@TempData["save"]'
+                var save = '@TempData["create"]'
                 if (save != '') {
                     alertify.success(save);
+                }
+                var del = '@TempData["delete"]'
+                if (del != '') {
+                    alertify.success(del);
                 }
             })
         </script>

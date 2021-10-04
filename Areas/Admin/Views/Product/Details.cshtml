@@ -10,6 +10,15 @@
             <div class="col-8">
                 <div class="form-group row">
                     <div class="col-4">
+                        <label asp-for="Id"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Id" disabled class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
                         <label asp-for="Name"></label>
                     </div>
                     <div class="col-8">
@@ -72,7 +81,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <img src="@Model.CoverImageUrl" width="100%" class="img-thumbnail" style="border-radius: 5px; border: 1px solid #efefef"/>
+                <img src="@Model.CoverImageUrl" width="400px" height="400px" class="img-thumbnail" style="border-radius: 5px; border: 1px solid #efefef"/>
             </div>
         </div>
     </div>

@@ -1,29 +1,55 @@
 ﻿@model EShop.Models.Product
+@using EShop.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
 
-<section class="py-2">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6">
-            <img class="card-img-top mb-5 mb-md-0" width="500px" height="600px" src="@Model.CoverImageUrl" alt="Product Image" />
-            </div>
-            <div class="col-md-6">
-                <div class="small mb-1">SKU: BST-498</div>
-                <h1 class="display-5 fw-bolder">@Model.Name</h1>
-                <div class="fs-5 mb-5">
-                    <span>@String.Format("{0:0.00}", @Model.Price) zł</span>
+    List<Product> products = HttpContextAccessor.HttpContext.Session.Get<List<Product>>("products");
+    Product product = null;
+    if (products != null)
+    {
+        product = products.FirstOrDefault(x => x.Id == Model.Id);
+    }
+
+}
+
+<form asp-action="Details" method="post">
+    <section class="py-2">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0" width="500px" height="600px" src="@Model.CoverImageUrl" alt="Product Image" />
                 </div>
-                <p class="lead">@Model.Description</p>
-                <div class="d-flex">
-                    <input class="form-control text-center mr-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Dodaj do koszyka
-                    </button>
+                <div class="col-md-6">
+                    <div class="small mb-1">SKU: BST-498</div>
+                    <h1 class="display-5 fw-bolder">@Model.Name</h1>
+                    <div class="fs-5 mb-5">
+                        <span>@String.Format("{0:0.00}", @Model.Price) zł</span>
+                    </div>
+                    <p class="lead">@Model.Description</p>
+                    <div class="d-flex">
+                        <input class="form-control text-center mr-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                        @if (product != null)
+                        {
+                            <button class="btn btn-outline-danger flex-shrink-0" type="submit" value="Remove from cart" asp-route-id="@Model.Id" asp-action="Remove">
+                                <i class="bi-cart-fill me-1"></i>
+                                Usuń z koszyka
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit" value="Add to cart">
+                                <i class="bi-cart-fill me-1"></i>
+                                Dodaj do koszyka
+                            </button>
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</form>
 <!-- Related items section-->
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">

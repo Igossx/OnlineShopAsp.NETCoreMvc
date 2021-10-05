@@ -136,7 +136,7 @@ namespace EShop.Controllers
                     HttpContext.Session.Set("products", products);
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Cart");
         }
     }
 }

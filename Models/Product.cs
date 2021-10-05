@@ -20,7 +20,7 @@ namespace EShop.Models
 
         [Required]
         [DisplayName("Opis")]
-        [MaxLength(2000)]
+        [MaxLength(200)]
         public string Description { get; set; }
 
         [Required]
@@ -36,6 +36,7 @@ namespace EShop.Models
         [Required]
         [DisplayName("Cena")]
         [Range(0.1, Double.MaxValue)]
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double Price { get; set; }
 
         [Required]

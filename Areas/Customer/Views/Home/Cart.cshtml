@@ -86,7 +86,9 @@
 
                         <h5 class="mb-4">Szacowany czas dostawy</h5>
 
-                        <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
+                        <p class="mb-0">
+                            @DateTime.Now.AddDays(3).ToString("d") r. - @DateTime.Now.AddDays(6).ToString("d") r.
+                        </p>
                     </div>
                 </div>
                 <!-- Card -->

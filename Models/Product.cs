@@ -54,6 +54,10 @@ namespace EShop.Models
         [DisplayName("Zdjęcie")]
         public string CoverImageUrl { get; set; }
 
+        [DefaultValue(false)]
+        [Required]
+        public bool IsFavorite { get; set; }
+
 
     }
 }

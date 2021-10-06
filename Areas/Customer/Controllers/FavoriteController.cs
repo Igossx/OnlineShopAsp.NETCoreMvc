@@ -10,15 +10,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EShop.Controllers
+namespace EShop.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    public class HomeController : Controller
+    public class FavoriteController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
+        private readonly ILogger<FavoriteController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        public FavoriteController(ILogger<FavoriteController> logger, ApplicationDbContext db)
         {
             _logger = logger;
             _db = db;
@@ -27,11 +27,6 @@ namespace EShop.Controllers
         public IActionResult Index()
         {
             return View(_db.Products.Include(x => x.Category).ToList());
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         // GET: Details
@@ -108,37 +103,6 @@ namespace EShop.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Cart
-        public IActionResult Cart()
-        {
-            List<Product> products = HttpContext.Session.Get<List<Product>>("products");
-
-            if (products == null)
-            {
-                products = new List<Product>();
-            }
-
-            return View(products);
-        }
-
-        // GET: Remove
-        [ActionName("Remove")]
-        public ActionResult RemoveToCart(int? id)
-        {
-            List<Product> products = HttpContext.Session.Get<List<Product>>("products");
-
-            if (products != null)
-            {
-                var product = products.FirstOrDefault(x => x.Id == id);
-                if (products != null)
-                {
-                    products.Remove(product);
-                    HttpContext.Session.Set("products", products);
-                }
-            }
-            return RedirectToAction("Cart");
-        }
-
         // GET: IsFavorite
         public IActionResult IsFavorite(int? id)
         {
@@ -168,5 +132,6 @@ namespace EShop.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }

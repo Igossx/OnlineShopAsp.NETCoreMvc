@@ -1,0 +1,86 @@
+﻿@model EShop.Models.Order
+@using EShop.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    List<Product> products = HttpContextAccessor.HttpContext.Session.Get<List<Product>>("products");
+
+    if (products == null)
+    {
+        products = new List<Product>();
+    }
+}
+
+<div class="container mt-5 px-5">
+    <div class="mb-4">
+        <h2>Potwierdź zamówienie i zapłać</h2> <span>Proszę dokonać płatności, aby móc korzystać ze wszystkich funkcji i korzyści.</span>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mb-5">
+            <div class="card p-3">
+                <div class="mt-2 mb-4">
+                    <h6 class="text-uppercase">Dane osobiste</h6>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Imię</span> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Nazwisko</span> </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Telefon</span> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Email</span> </div>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-uppercase">Szczegóły płatności</h6>
+                <div class="inputbox mt-3"> <input type="text" name="name" class="form-control" required="required"> <span>Nazwa karty</span> </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Numer karty</span> </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex flex-row">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Ważność</span> </div>
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>CVV</span> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 mb-4">
+                    <h6 class="text-uppercase">Adres do wysyłki</h6>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Ulica</span> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Miasto</span> </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Kraj</span> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Kod pocztowy</span> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-blue p-3 text-black mb-3">
+                <span>Do zapłaty</span>
+                <div class="d-flex flex-row align-items-end mb-3">
+                    <h1 class="mb-0 yellow">$549</h1> <span>.99</span>
+                </div> <span>Ciesz się wszystkimi funkcjami i bonusami po dokonaniu płatności</span>
+                <br />
+                <button class="btn btn-success px-3">Złóż zamówienie</button>
+            </div>
+        </div>
+    </div>
+</div>

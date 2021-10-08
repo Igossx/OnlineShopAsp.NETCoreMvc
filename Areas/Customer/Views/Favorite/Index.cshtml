@@ -1,5 +1,7 @@
 ﻿@using EShop.Models
-@model List<Product>
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Product>
+
 
     <!-- Header-->
     <header class="bg-dark py-5">
@@ -62,6 +64,9 @@
             </div>
         </div>
     </section>
+    <div>
+        @Html.PagedListPager(Model, c => Href("~/Customer/Favorite/Index?page=" + c))
+    </div>
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>

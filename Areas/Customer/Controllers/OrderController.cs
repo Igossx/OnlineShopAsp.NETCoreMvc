@@ -45,6 +45,7 @@ namespace EShop.Areas.Customer.Controllers
             }
 
             anOrder.OrderNumber = GetOrderNumber();
+            anOrder.OrderDate = DateTime.Now;
             _db.Orders.Add(anOrder);
 
             await _db.SaveChangesAsync();

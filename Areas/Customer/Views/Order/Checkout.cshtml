@@ -12,75 +12,131 @@
     }
 }
 
-<div class="container mt-5 px-5">
-    <div class="mb-4">
-        <h2>Potwierdź zamówienie i zapłać</h2> <span>Proszę dokonać płatności, aby móc korzystać ze wszystkich funkcji i korzyści.</span>
-    </div>
-    <div class="row">
-        <div class="col-md-8 mb-5">
-            <div class="card p-3">
-                <div class="mt-2 mb-4">
-                    <h6 class="text-uppercase">Dane osobiste</h6>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Imię</span> </div>
+<form asp-action="Checkout" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="container mt-5 px-5">
+        <div class="mb-4">
+            <h2>Potwierdź zamówienie i zapłać</h2> <span>Proszę dokonać płatności, aby móc korzystać ze wszystkich funkcji i korzyści.</span>
+        </div>
+        <div class="row">
+            <div class="col-md-8 mb-5">
+                <div class="card p-3">
+                    <div class="mt-2 mb-4">
+                        <h6 class="text-uppercase">Dane osobiste</h6>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="FirstName"></label>
+                                    <input type="hidden" asp-for="Id" />
+                                    <input asp-for="FirstName" class="form-control" required>
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="inputbox mt-3 mr-2">
+                                    <div class="form-group mt-3 mr-2">
+                                        <label asp-for="LastName"></label>
+                                        <input asp-for="LastName" class="form-control" required>
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Nazwisko</span> </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="PhoneNumber"></label>
+                                    <input asp-for="PhoneNumber" class="form-control" required>
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="Email"></label>
+                                    <input asp-for="Email" class="form-control" required>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <h6 class="text-uppercase">Szczegóły płatności</h6>
+                    <div class="form-group mt-3">
+                        <label asp-for="CardName"></label>
+                        <input asp-for="CardName" class="form-control" required>
+                        <span asp-validation-for="CardName" class="text-danger"></span>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Telefon</span> </div>
+                            <div class="form-group mt-3 mr-2">
+                                <i class="fa fa-credit-card"> </i><label asp-for="CardNumber"></label>
+                                <input asp-for="CardNumber" class="form-control" required>
+                                <span asp-validation-for="CardNumber" class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Email</span> </div>
+                            <div class="d-flex flex-row">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="CardValidity"></label>
+                                    <input asp-for="CardValidity" class="form-control" required>
+                                    <span asp-validation-for="CardValidity" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="CardCvv"></label>
+                                    <input asp-for="CardCvv" class="form-control" required>
+                                    <span asp-validation-for="CardCvv" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <h6 class="text-uppercase">Szczegóły płatności</h6>
-                <div class="inputbox mt-3"> <input type="text" name="name" class="form-control" required="required"> <span>Nazwa karty</span> </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Numer karty</span> </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex flex-row">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Ważność</span> </div>
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>CVV</span> </div>
+                    <div class="mt-4 mb-4">
+                        <h6 class="text-uppercase">Adres do wysyłki</h6>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="Street"></label>
+                                    <input asp-for="Street" class="form-control" required>
+                                    <span asp-validation-for="Street" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="City"></label>
+                                    <input asp-for="City" class="form-control" required>
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="mt-4 mb-4">
-                    <h6 class="text-uppercase">Adres do wysyłki</h6>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Ulica</span> </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Miasto</span> </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Kraj</span> </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Kod pocztowy</span> </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="Country"></label>
+                                    <input asp-for="Country" class="form-control" required>
+                                    <span asp-validation-for="Country" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3 mr-2">
+                                    <label asp-for="ZipCode"></label>
+                                    <input asp-for="ZipCode" class="form-control" required>
+                                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-blue p-3 text-black mb-3">
-                <span>Do zapłaty</span>
-                <div class="d-flex flex-row align-items-end mb-3">
-                    <h1 class="mb-0 yellow">$549</h1> <span>.99</span>
-                </div> <span>Ciesz się wszystkimi funkcjami i bonusami po dokonaniu płatności</span>
-                <br />
-                <button class="btn btn-success px-3">Złóż zamówienie</button>
+            <div class="col-md-4">
+                <div class="card card-blue p-3 text-black mb-3">
+                    <span>Do zapłaty</span>
+                    <div class="d-flex flex-row align-items-end mb-3">
+                        <h1 class="mb-0 yellow">@products.Sum(c => c.Price) PLN</h1>
+                    </div> <span>Ciesz się wszystkimi funkcjami i bonusami po dokonaniu płatności</span>
+                    <br />
+                    <button class="btn btn-success px-3" type="submit" value="Place Order">Złóż zamówienie</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

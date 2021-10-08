@@ -4,11 +4,10 @@ using EShop.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EShop.Controllers
 {
@@ -24,9 +23,9 @@ namespace EShop.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(x => x.Category).ToList());
+            return View(_db.Products.Include(x => x.Category).ToList().ToPagedList(page ?? 1, 9));
         }
 
         public IActionResult Privacy()

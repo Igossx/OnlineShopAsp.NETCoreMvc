@@ -19,5 +19,7 @@ namespace EShop.Data
 
         public DbSet<OrderDetails> OrderDetails { get; set; }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
     }
 }

@@ -1,0 +1,61 @@
+﻿@model EShop.Areas.Admin.Models.RoleUserVm
+
+<form method="post" asp-action="Assign" enctype="multipart/form-data">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Przypisz rolę</h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <h3 class="text-danger">@ViewBag.mgs</h3>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="UserId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="UserId" asp-items="@(new SelectList(ViewBag.data, "Id", "UserName"))" class="form-control">
+                            <option value="">Wybierz użytkownika</option>
+                        </select>
+
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="RoleId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="RoleId" asp-items="@(new SelectList(ViewBag.data2, "Name", "Name"))" class="form-control">
+                            <option value="">Wybierz role</option>
+                        </select>
+
+                        <span asp-validation-for="RoleId" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Przypisz" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Wróć</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

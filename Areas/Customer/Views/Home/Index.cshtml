@@ -118,18 +118,3 @@
     <div>
         @Html.PagedListPager(Model, c => Href("~/Customer/Home/Index?page=" + c))
     </div>
-
-    <!-- Footer-->
-    <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
-    </footer>
-
-    @section scripts {
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#button_favorite").click(function () {
-                    $(this).toggleClass('btn btn-outline-dark mt-auto btn-success');
-                })
-            });
-        </script>
-    }

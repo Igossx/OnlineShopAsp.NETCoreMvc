@@ -30,7 +30,7 @@ namespace EShop.Areas.Customer.Controllers
         // POST: Checkout
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Checkout(Order anOrder)
+        public async Task<IActionResult> CheckoutEnd(Order anOrder)
         {
             List<Product> products = HttpContext.Session.Get<List<Product>>("products");
 

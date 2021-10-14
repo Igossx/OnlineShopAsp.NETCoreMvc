@@ -21,7 +21,18 @@
                     <img class="card-img-top mb-5 mb-md-0" width="500px" height="600px" src="@Model.CoverImageUrl" alt="Product Image" />
                 </div>
                 <div class="col-md-6">
-                    <div class="small mb-1">SKU: BST-498</div>
+                    @if (@Model.IsAvailable == true)
+                    {
+                        <div class="small mb-1">
+                            Dostępny
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="small mb-1">
+                            Niedostępny
+                        </div>
+                    }
                     <h1 class="display-5 fw-bolder">@Model.Name</h1>
                     <div class="fs-5 mb-5">
                         <span>@Model.Price zł</span>

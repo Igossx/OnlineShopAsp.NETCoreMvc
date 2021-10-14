@@ -32,7 +32,7 @@ namespace EShop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ApplicationUser user)
+        public async Task<IActionResult> CreatePost(ApplicationUser user)
         {
 
             if (ModelState.IsValid)
@@ -42,8 +42,10 @@ namespace EShop.Areas.Customer.Controllers
 
                 if (result.Succeeded)
                 {
+                    var isSaveRole = await _userManager.AddToRoleAsync(user, "Użytkownik");
+
                     TempData["save"] = "Pomyślnie utworzono użytkownika.";
-                    return RedirectToAction("Index");
+                    return View();
                 }
 
                 foreach (var error in result.Errors)

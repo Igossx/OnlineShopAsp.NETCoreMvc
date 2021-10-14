@@ -1,6 +1,7 @@
 ﻿using EShop.Data;
 using EShop.Models;
 using EShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

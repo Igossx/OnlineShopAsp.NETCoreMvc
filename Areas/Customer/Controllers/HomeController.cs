@@ -24,8 +24,14 @@ namespace EShop.Controllers
             _db = db;
         }
 
-        public IActionResult Index(int? page)
+        public IActionResult Index(int? page, string SearchText)
         {
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                var result = _db.Products.Include(x => x.Category).Where(s => s.Name.Contains(SearchText) || s.Category.CategoryName.Contains(SearchText));
+                return View(result.ToList().ToPagedList(page ?? 1, 9));
+            }
+
             return View(_db.Products.Include(x => x.Category).ToList().ToPagedList(page ?? 1, 9));
         }
 

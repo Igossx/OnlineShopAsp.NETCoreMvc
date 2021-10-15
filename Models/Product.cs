@@ -44,6 +44,11 @@ namespace EShop.Models
         [DefaultValue(false)]
         public bool IsAvailable { get; set; }
 
+        [Required]
+        [DisplayName("Wyprzedaż")]
+        [DefaultValue(false)]
+        public bool IsSale { get; set; }
+
         [DisplayName("Kategoria")]
         [Required]
         public int CategoryId { get; set; }

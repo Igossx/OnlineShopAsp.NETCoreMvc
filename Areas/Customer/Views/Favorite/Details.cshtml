@@ -49,10 +49,20 @@
                         }
                         else
                         {
-                            <button class="btn btn-outline-dark flex-shrink-0" type="submit" value="Add to cart">
-                                <i class="bi-cart-fill me-1"></i>
-                                Dodaj do koszyka
-                            </button>
+                            @if (@Model.IsAvailable == true)
+                            {
+                                <button class="btn btn-outline-dark flex-shrink-0" type="submit" value="Add to cart">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Dodaj do koszyka
+                                </button>
+                            }
+                            else
+                            {
+                                <a class="btn btn-outline-danger flex-shrink-0" href="#" value="Add to cart">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Dodaj do koszyka (niedostępne)
+                                </a>
+                            }
                         }
 
                     </div>

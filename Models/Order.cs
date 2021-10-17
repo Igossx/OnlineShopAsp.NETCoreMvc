@@ -80,6 +80,11 @@ namespace EShop.Models
         [DisplayFormat(DataFormatString = "{0:f}", ApplyFormatInEditMode = true)]
         public DateTime OrderDate { get; set; }
 
+        [Required]
+        [DisplayName("Czy zrealizowane")]
+        [DefaultValue(false)]
+        public bool IsRealized { get; set; }
+
         public virtual List<OrderDetails> OrderDetails { get; set; }
     }
 }

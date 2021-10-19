@@ -31,32 +31,36 @@
                 <th>
                     Imię i Nazwisko
                 </th>
+                <th>
+                    Kwota
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in Model)
             {
-            <tr>
-                <td width="5%">@obj.OrderNumber</td>
-                <td width="22%">@obj.Email</td>
-                <td width="15%">@obj.OrderDate</td>
-                <td width="20%">@obj.FirstName @obj.LastName</td>
-                <td class="text-center">
-                    <div class="w-75 btn-group" role="group">
-                        <a asp-controller="OrderAdmin" asp-route-Id="@obj.Id" asp-action="IsRealized" class="btn btn-primary mx-2">
-                            <i class="fas fa-check-circle"></i>
-                        </a>
-                        <a asp-controller="OrderAdmin" asp-route-Id="@obj.Id" asp-action="Details" class="btn btn-success mx-2">
-                            <i class="fas fa-list-ul"></i>
-                        </a>
-                        <a asp-controller="OrderAdmin" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
+                <tr>
+                    <td width="5%">@obj.OrderNumber</td>
+                    <td width="20%">@obj.Email</td>
+                    <td width="14%">@obj.OrderDate</td>
+                    <td width="18%">@obj.FirstName @obj.LastName</td>
+                    <td width="10%">@obj.TotalAmount zł</td>
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="OrderAdmin" asp-route-Id="@obj.Id" asp-action="IsRealized" class="btn btn-primary mx-2">
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                            <a asp-controller="OrderAdmin" asp-route-Id="@obj.Id" asp-action="Details" class="btn btn-success mx-2">
+                                <i class="fas fa-list-ul"></i>
+                            </a>
+                            <a asp-controller="OrderAdmin" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
 
-                    </div>
-                </td>
-            </tr>
+                        </div>
+                    </td>
+                </tr>
             }
 
         </tbody>

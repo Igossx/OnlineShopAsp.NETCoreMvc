@@ -7,9 +7,10 @@
         <div class="form-group row">
             <h2 class="text-info pl-3">Szczegóły zamówienia</h2>
         </div>
-        <div class="row">
-            <div class="col-8">
-                <div class="form-group row">
+        <div class="container">
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="OrderNumber"></label>
                     </div>
@@ -18,7 +19,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="Email"></label>
                     </div>
@@ -27,7 +29,11 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="FirstName"></label>
                     </div>
@@ -36,7 +42,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="LastName"></label>
                     </div>
@@ -45,7 +52,12 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="IsRealized"></label>
                     </div>
@@ -54,7 +66,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="OrderDate"></label>
                     </div>
@@ -63,7 +76,11 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="PhoneNumber"></label>
                     </div>
@@ -72,7 +89,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="CardName"></label>
                     </div>
@@ -81,7 +99,12 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="CardNumber"></label>
                     </div>
@@ -90,7 +113,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="CardValidity"></label>
                     </div>
@@ -99,7 +123,11 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="CardCvv"></label>
                     </div>
@@ -108,7 +136,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="Street"></label>
                     </div>
@@ -117,7 +146,12 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="City"></label>
                     </div>
@@ -126,7 +160,8 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="ZipCode"></label>
                     </div>
@@ -135,7 +170,11 @@
                     </div>
 
                 </div>
-                <div class="form-group row">
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col">
                     <div class="col-4">
                         <label asp-for="Country"></label>
                     </div>
@@ -145,15 +184,34 @@
 
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-8 offset-4 row">
-
-                        <div class="col">
-                            <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Wróć</a>
-                        </div>
+                <div class="form-group col">
+                    <div class="col-4">
+                        <label asp-for="TotalAmount"></label>
                     </div>
+                    <div class="col-8">
+                        <input asp-for="TotalAmount" disabled class="form-control" />
+                    </div>
+
                 </div>
+
             </div>
+
+            <br />
+
+            <div class="form-group row">
+
+
+                <div class="col-5">
+                    <a asp-action="OrderMoreInfo" asp-route-Id="@Model.Id" class="btn btn-primary w-100"> Więcej szczegółów</a>
+                </div>
+
+                <div class="col-5">
+                    <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Wróć</a>
+                </div>
+
+            </div>
+
+            <div class="w-100"></div>
         </div>
     </div>
 
@@ -162,4 +220,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-

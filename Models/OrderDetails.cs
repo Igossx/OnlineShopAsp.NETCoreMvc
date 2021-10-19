@@ -13,10 +13,10 @@ namespace EShop.Models
         [Key]
         public int Id { get; set; }
 
-        [DisplayName("Zamówienie")]
+        [DisplayName("Id zamówienia")]
         public int OrderId { get; set; }
 
-        [DisplayName("Produkt")]
+        [DisplayName("Id produktu")]
         public int ProductId { get; set; }
 
         [ForeignKey("OrderId")]

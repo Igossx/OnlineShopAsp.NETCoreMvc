@@ -24,6 +24,7 @@ namespace EShop.Controllers
             _db = db;
         }
 
+        //[Authorize(Roles = "Użytkownik")]
         public IActionResult Index(int? page, string SearchText)
         {
             if (!string.IsNullOrEmpty(SearchText))
@@ -175,4 +176,5 @@ namespace EShop.Controllers
             return RedirectToAction("Index");
         }
     }
+
 }

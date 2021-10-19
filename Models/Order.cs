@@ -85,6 +85,12 @@ namespace EShop.Models
         [DefaultValue(false)]
         public bool IsRealized { get; set; }
 
+        [DisplayName("Łączna kwota")]
+        [DefaultValue(0.0)]
+        [Range(0.1, Double.MaxValue)]
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        public double TotalAmount { get; set; }
+
         public virtual List<OrderDetails> OrderDetails { get; set; }
     }
 }

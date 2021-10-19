@@ -32,6 +32,7 @@ namespace EShop.Areas.Customer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CheckoutEnd(Order anOrder)
         {
+            var totalAmount = 0.0;
             List<Product> products = HttpContext.Session.Get<List<Product>>("products");
 
             if (products != null)
@@ -40,12 +41,15 @@ namespace EShop.Areas.Customer.Controllers
                 {
                     OrderDetails orderDetails = new OrderDetails();
                     orderDetails.ProductId = product.Id;
+                    totalAmount += product.Price;
                     anOrder.OrderDetails.Add(orderDetails);
                 }
             }
 
             anOrder.OrderNumber = GetOrderNumber();
             anOrder.OrderDate = DateTime.Now;
+            anOrder.TotalAmount = totalAmount;
+
             _db.Orders.Add(anOrder);
 
             await _db.SaveChangesAsync();

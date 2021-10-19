@@ -1,5 +1,6 @@
 ﻿using EShop.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,24 @@ namespace EShop.Areas.Admin.Controllers
             }
 
             return View(order);
+        }
+
+        // GET: DetailsProduct
+        public ActionResult DetailsProduct(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _db.Products.Include(c => c.Category).FirstOrDefault(c => c.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
 
         // GET: Delete
@@ -96,5 +115,20 @@ namespace EShop.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // GET: OrderDetailss
+        public ActionResult OrderMoreInfo(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            _db.OrderDetails.Include(x => x.Product).Where(c => c.OrderId == id).ToList();
+
+            return View(_db.OrderDetails.Include(x => x.Product).Where(c => c.OrderId == id).ToList());
+
+        }
+
     }
 }

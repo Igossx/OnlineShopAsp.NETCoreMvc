@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace EShop.Areas.Customer.Controllers
@@ -49,6 +51,37 @@ namespace EShop.Areas.Customer.Controllers
             anOrder.OrderNumber = GetOrderNumber();
             anOrder.OrderDate = DateTime.Now;
             anOrder.TotalAmount = totalAmount;
+
+            // Sending email
+
+            //string to = anOrder.Email; // To address    
+            //string from = "Eshop@gmail.com"; // From address    
+            //MailMessage message = new MailMessage(from, to);
+
+            //message.Subject = "Podsumowanie twojego zamówienia nr " + anOrder.OrderNumber + ".";
+
+            //string mailbody = "Szczegóły twojego zamówienia: " + Environment.NewLine + "Telefon: " + anOrder.PhoneNumber + Environment.NewLine +
+            //    "Adres: " + anOrder.Country + " " + anOrder.ZipCode + " " + anOrder.City + " " + anOrder.Street + Environment.NewLine +
+            //    "Wartość całkowita zamówienia: " + anOrder.TotalAmount + " zł.";
+
+            //message.Body = mailbody;
+            //message.BodyEncoding = Encoding.UTF8;
+            //message.IsBodyHtml = true;
+            //SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
+            //System.Net.NetworkCredential basicCredential1 = new
+            //System.Net.NetworkCredential("emailId", "Password");
+            //client.EnableSsl = true;
+            //client.UseDefaultCredentials = false;
+            //client.Credentials = basicCredential1;
+            //try
+            //{
+            //    client.Send(message);
+            //}
+
+            //catch (Exception ex)
+            //{
+            //    throw;
+            //}
 
             _db.Orders.Add(anOrder);
 

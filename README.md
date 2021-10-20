@@ -3,6 +3,7 @@ E-commerce app using ASP.NET Core MVC, using Entity Framework, Razor pages, Linq
 
 EShop functionalities: <br/>
 -Logging in and out of users; <br/>
+-Searching products; <br/>
 -List of products available in the store; <br/>
 -List of favorite products; <br/>
 1.Customer: <br/>

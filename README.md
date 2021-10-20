@@ -1,8 +1,8 @@
 # OnlineShopAsp.NetCoreMvc
 E-commerce app using ASP.NET Core MVC, using Entity Framework, Razor pages, Linq and MS SQL Server.
 
-EShop functionalities:
--Logging in and out of users;
+EShop functionalities: <br/>
+-Logging in and out of users; <br/>
 -List of products available in the store
 -List of favorite products
 1.Customer:

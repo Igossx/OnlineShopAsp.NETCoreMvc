@@ -16,7 +16,7 @@ EShop functionalities: <br/>
 -Log out; <br/>
 and more. <br/>
 
-  (https://user-images.githubusercontent.com/61758962/145271049-fc6f8031-321c-4f93-8dfa-194ae9d8cd2f.png)
+  ![github-big](https://user-images.githubusercontent.com/61758962/145271049-fc6f8031-321c-4f93-8dfa-194ae9d8cd2f.png)
 
 
 
